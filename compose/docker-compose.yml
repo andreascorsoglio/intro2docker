@@ -1,0 +1,28 @@
+version: "3"
+
+# All available services
+services:
+
+  # Computation
+  jupyter:
+    container_name: "jupyter_notebook"
+    image: "jupyter/minimal-notebook"
+    restart: "always"
+    environment:
+      - JUPYTER_TOKEN=mytoken
+    user: root
+    volumes:
+      - ./data:/home/jovyan/work/
+    ports:
+      - 8888:8888
+
+  rstudio:
+    container_name: "rstudio"
+    image: "rocker/rstudio"
+    restart: "always"
+    environment:
+      - DISABLE_AUTH=true
+    volumes:
+      - ./data:/home/rstudio
+    ports:
+      - 8787:8787
